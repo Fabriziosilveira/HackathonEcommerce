@@ -1,0 +1,10 @@
+# Ignore artifacts:
+build
+dist
+coverage
+
+.cache
+package-lock.json
+public
+node_modules
+yarn.lock

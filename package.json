@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "format": "prettier \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
+    "format": "prettier \"{web,server}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
     "format:check": "pnpm format --check",
     "format:write": "pnpm format --write",
     "test": "pnpm --parallel -r run test",
