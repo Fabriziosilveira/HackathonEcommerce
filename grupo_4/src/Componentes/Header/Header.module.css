@@ -30,9 +30,3 @@
     position: absolute;
     top: 100px;
 }
-
-.nav__icon {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--color-white);
-}

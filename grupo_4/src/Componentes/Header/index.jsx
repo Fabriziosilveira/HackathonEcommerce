@@ -1,13 +1,41 @@
 import { useState } from 'react';
 import styles from './Header.module.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MenuHamburger from './MenuHamburger';
+import Rota from './Rota';
 
 export default function Header() {
+
     const [menuVisivel, setMenuVisivel] = useState(false);
+
     function exibirMenu() {
         setMenuVisivel(!menuVisivel);
     };
+
+    const rotas =[
+        {
+            url: '/',
+            titulo: 'Home'
+        },
+        {
+            url: '/Aboute',
+            titulo: 'Sobre'
+        },
+        {
+            url: '/Products',
+            titulo: 'Produtos'
+        },
+        {
+            url: '/Blog',
+            titulo: 'Blog'
+        },
+        {
+            url: '/Contact',
+            titulo: 'Contato'
+        }
+    ]
+
+
     return (
         <header className={styles.header}>
             <Link to='/'>
@@ -16,11 +44,9 @@ export default function Header() {
             <MenuHamburger exibirMenu={exibirMenu} />
             <nav className={menuVisivel ? styles.navVisivel : styles.navNone}>
                 <ul className={styles.nav}>
-                    <li><NavLink className={styles.nav__icon} to='/'>Home</NavLink></li>
-                    <li><NavLink className={styles.nav__icon} to='/Aboute'>Sobre</NavLink></li>
-                    <li><NavLink className={styles.nav__icon} to='/Products'>Produtos</NavLink></li>
-                    <li><NavLink className={styles.nav__icon} to='/Blog'>Blog</NavLink></li>
-                    <li><NavLink className={styles.nav__icon} to='Contact'>Contato</NavLink></li>
+                    {
+                        rotas.map((rota, index) => <Rota key={index} url={rota.url} titulo={rota.titulo} />)
+                    }
                 </ul>
             </nav>
         </header >
