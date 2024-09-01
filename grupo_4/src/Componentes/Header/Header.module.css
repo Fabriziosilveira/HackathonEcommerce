@@ -3,6 +3,7 @@
     background-color: var(--color-white);
     display: flex;
     align-items: center;
+    column-gap: 90px;
     padding: 1.5rem 0;
     padding-left: 1.5rem;
 }

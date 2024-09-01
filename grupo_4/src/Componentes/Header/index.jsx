@@ -3,6 +3,7 @@ import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import MenuHamburger from './MenuHamburger';
 import Rota from './Rota';
+import Cart from './Cart';
 
 export default function Header() {
 
@@ -32,6 +33,10 @@ export default function Header() {
         {
             url: '/Contact',
             titulo: 'Contato'
+        },
+        {
+            url: '/login',
+            titulo: 'Cadastrar'
         }
     ]
 
@@ -41,6 +46,7 @@ export default function Header() {
             <Link to='/'>
                     <h1>Logo</h1>
             </Link>
+            <Cart />
             <MenuHamburger exibirMenu={exibirMenu} />
             <nav className={menuVisivel ? styles.navVisivel : styles.navNone}>
                 <ul className={styles.nav}>
