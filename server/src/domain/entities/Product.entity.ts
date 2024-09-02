@@ -6,22 +6,26 @@ export type PropsProduct = {
     price: number;
     description: string;
     quantity: number;
+    imageURL: string;
 }
 
 export class Product{
     private constructor(private props: PropsProduct){
+        this.validateDescription(this.description)
+        this.validateImageURL(this.imageURL);
         this.validateName(this.props.name);
         this.validatePrice(this.props.price);
         this.validateQuantity(this.props.quantity);
     }
 
-    public static create(name: string, price: number, description: string){
+    public static create(name: string, price: number, description: string, imageURL: string){
         return new Product({
             id: crypto.randomUUID().toString(),
             name,
             price,
             description,
             quantity: 0,
+            imageURL,
         })
     }
 
@@ -45,7 +49,20 @@ export class Product{
 
     private validateName(name: string): void{
         if (name == ""){
-            throw new Error(ErrorMessage.nameCannotBeEmpty);
+            throw new Error(ErrorMessage.cannotBeEmpty);
+        }
+    }
+
+
+    private validateDescription(name: string): void{
+        if (name == ""){
+            throw new Error(ErrorMessage.cannotBeEmpty);
+        }
+    }
+
+    private validateImageURL(imageURL: string) : void{
+        if(imageURL == ""){
+            throw new Error(ErrorMessage.cannotBeEmpty);
         }
     }
 
@@ -84,6 +101,10 @@ export class Product{
     
     public get quantity() : number {
         return this.props.quantity;
+    }
+
+    public get imageURL() : string {
+        return this.props.imageURL;
     }
 }
 
