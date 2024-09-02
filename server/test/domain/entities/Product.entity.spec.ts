@@ -6,7 +6,8 @@ describe('Product Entity', () => {
         const product = Product.create(
             'TestProduct',
             30,
-            'Test product description.'
+            'Test product description.',
+            'test.com/image_test'
         );
 
         expect(product).toBeDefined();
@@ -14,20 +15,32 @@ describe('Product Entity', () => {
         expect(product.price).toBe(30);
         expect(product.description).toBe('Test product description.');
         expect(product.quantity).toBe(0);
+        expect(product.imageURL).toBe('test.com/image_test');
     });
 
     it('Shuld throw an error if name is empty', () => {
-        expect(() => Product.create('',30,'Test product description.'))
-        .toThrow(ErrorMessage.nameCannotBeEmpty);
+        expect(() => Product.create('',30,'Test product description.', 'test.com/image_test'))
+        .toThrow(ErrorMessage.cannotBeEmpty);
     });
 
     it('Shuld throw an error if price is not a positive integer', () => {
-        expect(() => Product.create('TestProduct',-5,'Test product description.'))
+        expect(() => Product.create('TestProduct',-5,'Test product description.', 'test.com/image_test'))
         .toThrow(ErrorMessage.priceMustBePositive);
 
-        expect(() => Product.create('TestProduct',0,'Test product description.'))
+        expect(() => Product.create('TestProduct',0,'Test product description.', 'test.com/image_test'))
         .toThrow(ErrorMessage.priceMustBePositive);
     });
+
+    it('Shuld throw an error if description is empty', () => {
+        expect(() => Product.create('TestProduct',30,'', 'test.com/image_test'))
+        .toThrow(ErrorMessage.cannotBeEmpty);
+    });
+
+    it('Shuld throw an error if imageURL is empty', () => {
+        expect(() => Product.create('TestProduct',30,'Test product description.', ''))
+        .toThrow(ErrorMessage.cannotBeEmpty);
+    })
+
 
     it('Shuld throw an error if quantity is not a positive integer', () => {
         const productProps: PropsProduct = {
@@ -35,6 +48,7 @@ describe('Product Entity', () => {
             name: 'TestProduct',
             price: 30,
             description: 'Test product description.',
+            imageURL: 'test.com/image_test',
             quantity: -1,
         };
 
@@ -48,6 +62,7 @@ describe('Product Entity', () => {
             'TestProduct',
             30,
             'Test product description.',
+            'test.com/image_test',
         );
 
         product.increaseQuantity(5);
@@ -59,6 +74,7 @@ describe('Product Entity', () => {
             'TestProduct',
             30,
             'Test product description.',
+            'test.com/image_test',
         );
 
         product.increaseQuantity(5);
@@ -71,6 +87,7 @@ describe('Product Entity', () => {
             'TestProduct',
             30,
             'Test product description.',
+            'test.com/image_test',
         );
 
         product.increaseQuantity(1);
@@ -83,6 +100,7 @@ describe('Product Entity', () => {
             'TestProduct',
             30,
             'Test product description.',
+            'test.com/image_test',
         );
 
         expect(() => product.increaseQuantity(-1)).toThrow(ErrorMessage.quantityMustBePositive);
@@ -94,6 +112,7 @@ describe('Product Entity', () => {
             'TestProduct',
             30,
             'Test product description.',
+            'test.com/image_test',
         );
 
         expect(() => product.decreaseQuantity(1)).toThrow(ErrorMessage.quantityMustBePositive);
