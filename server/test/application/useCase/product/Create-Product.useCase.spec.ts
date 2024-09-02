@@ -19,7 +19,8 @@ describe('CreateProductUseCase', () => {
         const input: CreateProductInputDto = {
             name: 'TestProduct',
             price: 30,
-            description: 'Test product description.'
+            description: 'Test product description.',
+            imageURL:'test.com/image_test',
         };
 
         const output = await createProductUseCase.execute(input);
@@ -40,18 +41,32 @@ describe('CreateProductUseCase', () => {
         const input: CreateProductInputDto = {
             name: '',
             price: 30,
-            description: 'Test product description.'
+            description: 'Test product description.',
+            imageURL:'test.com/image_test',
         };
 
         await expect(createProductUseCase.execute(input))
-            .rejects.toThrow(ErrorMessage.nameCannotBeEmpty);
+            .rejects.toThrow(ErrorMessage.cannotBeEmpty);
+    });
+
+    it('Shuld throw an error if product imageURL is empty', async () => {
+        const input: CreateProductInputDto = {
+            name: 'TestProduct',
+            price: 30,
+            description: 'Test product description.',
+            imageURL: ''
+        };
+
+        await expect(createProductUseCase.execute(input))
+            .rejects.toThrow(ErrorMessage.cannotBeEmpty);
     });
 
     it('Shuld throw an error if product price is not positive', async () => {
         const input: CreateProductInputDto = {
             name: 'TestProduct',
             price: -30,
-            description: 'Test product description.'
+            description: 'Test product description.',
+            imageURL:'test.com/image_test',
         };
 
         await expect(createProductUseCase.execute(input))
