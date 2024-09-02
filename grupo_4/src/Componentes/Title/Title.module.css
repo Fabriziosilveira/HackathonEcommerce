@@ -1,0 +1,7 @@
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-DarkTurquoise);
+    text-transform: uppercase;
+    padding: 1.2rem 0 0 0.5rem;
+}
