@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/main.js",
-    "dev": "tsx --watch src/infra/http/main.ts",
+    "dev": "tsx --watch src/main.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts --fix && eslint test/**/*.ts ",
     "lint:fix": "eslint src/**/*.ts --fix && eslint test/**/*.ts --fix",
@@ -27,6 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.19.0",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2"
   },
   "devDependencies": {
