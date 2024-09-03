@@ -2,6 +2,7 @@
 import { HTTP } from "../http";
 import express, { Express } from "express"
 import { Route } from "./routes/routes";
+import cors from 'cors';
 
 export class ApiExpress implements HTTP{
 
@@ -10,6 +11,7 @@ export class ApiExpress implements HTTP{
     private constructor(routes: Route[]){
         this.app = express();
         this.app.use(express.json());
+        this.app.use(cors());
         this.addRoutes(routes);
     };
 
